@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naira Zitei — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8954A;
+    --gold-light: #E8D5A3;
+    --ink: #1A1A1A;
+    --muted: #6B6B6B;
+    --surface: #F8F7F4;
+    --white: #FFFFFF;
+    --border: #E2E0DA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* LANGUAGE TOGGLE */
+  .lang-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+  }
+
+  .lang-bar-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 3px;
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    padding: 4px 16px;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    color: var(--muted);
+    transition: all 0.2s ease;
+  }
+
+  .lang-btn.active {
+    background: var(--ink);
+    color: var(--white);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    z-index: 99;
+    background: rgba(248, 247, 244, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    padding: 0;
+    height: 48px;
+    align-items: center;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--ink); }
+
+  /* MAIN CONTENT */
+  main { padding-top: 104px; }
+
+  /* HERO */
+  .hero {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 7rem 2.5rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  .hero-text h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-style: italic;
+    border-left: 2px solid var(--gold);
+    padding-left: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 4px 14px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--muted);
+    background: var(--white);
+  }
+
+  .hero-photo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-placeholder {
+    width: 260px;
+    height: 320px;
+    border-radius: 4px;
+    background: var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 1.5;
+    border: 1px dashed #ccc;
+  }
+
+  .photo-placeholder svg {
+    opacity: 0.4;
+  }
+
+  /* SECTION BASE */
+  section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 4.5rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+  }
+
+  /* EXPERIENCE CARDS */
+  .exp-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2rem 2.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.3rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-company {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .exp-period {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  .exp-role {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+
+  .exp-projects { list-style: none; }
+
+  .exp-project {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .exp-project:last-child { border-bottom: none; }
+
+  .exp-project-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-result {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #2D6A3F;
+    background: #EAF5EE;
+    padding: 3px 12px;
+    border-radius: 100px;
+  }
+
+  .tools-line {
+    margin-top: 1.4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .tools-line strong { color: var(--ink); }
+
+  /* JOURNALISM */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.4rem 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .article-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .article-outlet {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    flex: 1;
+    margin-bottom: 0.8rem;
+  }
+
+  .article-topic {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-group {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+  }
+
+  .skill-group-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .skill-list {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .contact-text {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .contact-text p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 200px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.9rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 400;
+  }
+
+  .contact-link span {
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .contact-link:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem 3rem; }
+    .hero-photo { order: -1; }
+    .photo-placeholder { width: 180px; height: 220px; }
+    section { padding: 3rem 1.5rem; }
+    nav { gap: 1.2rem; }
+    nav a { font-size: 0.7rem; }
+    .lang-bar { padding: 0 1.5rem; }
+    .exp-card { padding: 1.4rem 1.2rem; }
+    footer { padding: 1.5rem; }
+  }
+
+  /* LANG VISIBILITY */
+  [data-lang] { display: none; }
+  .lang-en [data-lang="en"] { display: block; }
+  .lang-pt [data-lang="pt"] { display: block; }
+  [data-lang-inline] { display: none; }
+  .lang-en [data-lang-inline="en"] { display: inline; }
+  .lang-pt [data-lang-inline="pt"] { display: inline; }
+  [data-lang-flex] { display: none; }
+  .lang-en [data-lang-flex="en"] { display: flex; }
+  .lang-pt [data-lang-flex="pt"] { display: flex; }
+</style>
+</head>
+<body class="lang-en">
+
+<!-- LANGUAGE BAR -->
+<div class="lang-bar">
+  <span class="lang-bar-name">Naira Zitei</span>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')" id="btn-pt">PT</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#about" data-lang-inline="en">About</a>
+  <a href="#about" data-lang-inline="pt">Sobre</a>
+  <a href="#experience" data-lang-inline="en">Experience</a>
+  <a href="#experience" data-lang-inline="pt">Experiência</a>
+  <a href="#journalism" data-lang-inline="en">Journalism</a>
+  <a href="#journalism" data-lang-inline="pt">Jornalismo</a>
+  <a href="#skills" data-lang-inline="en">Skills</a>
+  <a href="#skills" data-lang-inline="pt">Habilidades</a>
+  <a href="#contact" data-lang-inline="en">Contact</a>
+  <a href="#contact" data-lang-inline="pt">Contato</a>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero" id="about">
+    <div class="hero-text">
+      <p class="hero-subtitle">
+        <span data-lang-inline="en">Corporate Communication · Influencer Management · Content Production</span>
+        <span data-lang-inline="pt">Comunicação Corporativa · Assessoria de Influenciadores · Produção de Conteúdo</span>
+      </p>
+      <h1>
+        <span data-lang-inline="en">Naira <em>Zitei</em></span>
+        <span data-lang-inline="pt">Naira <em>Zitei</em></span>
+      </h1>
+      <p class="hero-tagline">
+        <span data-lang-inline="en">"A communicator who believes every message has the right channel and the right strategy to reach it."</span>
+        <span data-lang-inline="pt">"Uma comunicadora que acredita que toda mensagem tem o canal certo e a estratégia certa para chegar lá."</span>
+      </p>
+      <div class="hero-tags">
+        <span class="tag">Martigny, Switzerland</span>
+        <span class="tag" data-lang-inline="en">Journalism · BA</span>
+        <span class="tag" data-lang-inline="pt">Jornalismo · Bacharelado</span>
+        <span class="tag" data-lang-inline="en">Corporate Comms · Post-Grad</span>
+        <span class="tag" data-lang-inline="pt">Comunicação Corporativa · Pós</span>
+        <span class="tag" data-lang-inline="en">PT · EN</span>
+        <span class="tag" data-lang-inline="pt">PT · EN</span>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B8954A" stroke-width="1.2">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <span data-lang-inline="en">Photo coming soon</span>
+        <span data-lang-inline="pt">Foto em breve</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">
+      <span data-lang-inline="en">Career</span>
+      <span data-lang-inline="pt">Carreira</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang-inline="en">Corporate Experience</span>
+      <span data-lang-inline="pt">Experiência Corporativa</span>
+    </h2>
+
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-company">Invitro <span style="font-weight:300;font-size:0.9rem;color:var(--muted)">· Auren Energia (Grupo Votorantim)</span></p>
+          <p class="exp-role">
+            <span data-lang-inline="en">Content Producer — Mid-Level</span>
+            <span data-lang-inline="pt">Produtora de Conteúdo Pleno</span>
+          </p>
+        </div>
+        <p class="exp-period">
+          <span data-lang-inline="en">Sep 2024 – Mar 2026</span>
+          <span data-lang-inline="pt">Set 2024 – Mar 2026</span>
+        </p>
+      </div>
+
+      <ul class="exp-projects">
+
+        <!-- PROJECT 1 -->
+        <li class="exp-project">
+          <p class="exp-project-title">
+            <span data-lang-inline="en">Demand Management System Implementation</span>
+            <span data-lang-inline="pt">Implementação de Sistema de Recebimento de Demandas</span>
+          </p>
+          <p class="exp-project-desc">
+            <span data-lang-inline="en">When I joined Auren, requests were coming in through multiple unstructured channels — emails and messages — which caused duplicated briefs and content going through endless revisions. I mapped the root cause and implemented a centralized demand intake system through an internal platform. The form standardized all the information needed to define the best communication strategy before a single word was written.</span>
+            <span data-lang-inline="pt">Ao chegar na Auren, as demandas chegavam por múltiplos canais desestruturados — e-mails e mensagens —, o que gerava briefings duplicados e materiais com refações excessivas. Mapeei a causa raiz e implementei um sistema centralizado de recebimento de demandas por uma plataforma interna. O formulário padronizou todas as informações necessárias para definir a melhor estratégia de comunicação antes de qualquer produção.</span>
+          </p>
+          <span class="exp-result">
+            ↓ 5× 
+            <span data-lang-inline="en">reduction in content revisions</span>
+            <span data-lang-inline="pt">redução nas refações de materiais</span>
+          </span>
+          <p class="tools-line">
+            <strong data-lang-inline="en">Tools: </strong>
+            <strong data-lang-inline="pt">Ferramentas: </strong>
+            <span data-lang-inline="en">Internal platform (Auren)</span>
+            <span data-lang-inline="pt">Plataforma interna (Auren)</span>
+          </p>
+        </li>
+
+        <!-- PROJECT 2 -->
+        <li class="exp-project">
+          <p class="exp-project-title">
+            <span data-lang-inline="en">Newsletter Curation & Redesign</span>
+            <span data-lang-inline="pt">Curadoria e Redesign da Newsletter</span>
+          </p>
+          <p class="exp-project-desc">
+            <span data-lang-inline="en">The company had a weekly internal newsletter that lacked editorial curation and a coherent layout. I took over the editorial process — defining a structured content selection and refreshing the visual design for better reading experience. I also diversified formats (videos, images, interviews) and integrated an email dispatch tool to track open rates for the first time.</span>
+            <span data-lang-inline="pt">A empresa tinha uma newsletter semanal interna sem curadoria editorial e com layout desatualizado. Assumi o processo editorial — estruturando a seleção de pautas e reformulando o layout para uma melhor experiência de leitura. Diversifiquei os formatos (vídeos, imagens, entrevistas) e integrei um disparador de e-mails para mensurar as taxas de abertura pela primeira vez.</span>
+          </p>
+          <span class="exp-result">
+            ↑ 60% → 75% 
+            <span data-lang-inline="en">email open rate in 6 months</span>
+            <span data-lang-inline="pt">taxa de abertura em 6 meses</span>
+          </span>
+          <p class="tools-line">
+            <strong data-lang-inline="en">Tools: </strong>
+            <strong data-lang-inline="pt">Ferramentas: </strong>
+            Brevo · Intranet
+          </p>
+        </li>
+
+        <!-- PROJECT 3 -->
+        <li class="exp-project">
+          <p class="exp-project-title">
+            <span data-lang-inline="en">Instagram Strategy & Revival</span>
+            <span data-lang-inline="pt">Estratégia e Revitalização do Instagram</span>
+          </p>
+          <p class="exp-project-desc">
+            <span data-lang-inline="en">The company's Instagram was inactive and lacked purpose. I designed a channel strategy from scratch — defining its role as a humanized employee-facing space — and built an advance content calendar that allowed production of richer formats: employee interview videos, animated content, and carousels. The channel became a consistent, twice-weekly touchpoint with a distinct and more relaxed voice.</span>
+            <span data-lang-inline="pt">O Instagram da empresa estava abandonado e sem propósito definido. Desenvolvi uma estratégia de canal do zero — definindo seu papel como um espaço humanizado e descontraído para colaboradores — e criei um calendário de pautas com antecedência que viabilizou formatos mais elaborados: vídeos com colaboradores, animações e carrosseis. O canal passou a ter publicações duas vezes por semana com uma voz própria e consistente.</span>
+          </p>
+          <span class="exp-result">
+            ↑ 5% → 11% 
+            <span data-lang-inline="en">engagement rate doubled</span>
+            <span data-lang-inline="pt">taxa de engajamento dobrada</span>
+          </span>
+          <p class="tools-line">
+            <strong data-lang-inline="en">Tools: </strong>
+            <strong data-lang-inline="pt">Ferramentas: </strong>
+            Instagram · Canva · Adobe Premiere Pro
+          </p>
+        </li>
+
+      </ul>
+    </div>
+
+    <p class="section-subtitle">
+      <span data-lang-inline="en">Note: As these projects were developed within internal corporate communications, original materials are confidential and not displayed here.</span>
+      <span data-lang-inline="pt">Nota: Por serem projetos desenvolvidos no âmbito da comunicação interna corporativa, os materiais originais são confidenciais e não estão expostos aqui.</span>
+    </p>
+
+    <!-- INFLUENCER CARD -->
+    <div class="exp-card">
+      <div class="exp-header">
+        <div>
+          <p class="exp-company">
+            <span data-lang-inline="en">Influencer Commercial Advisory</span>
+            <span data-lang-inline="pt">Assessoria Comercial de Influenciadores</span>
+          </p>
+          <p class="exp-role">
+            <span data-lang-inline="en">Freelance · Football &amp; Pet niches</span>
+            <span data-lang-inline="pt">Freela · Nichos de futebol e pet</span>
+          </p>
+        </div>
+        <p class="exp-period">
+          <span data-lang-inline="en">Ongoing</span>
+          <span data-lang-inline="pt">Em andamento</span>
+        </p>
+      </div>
+
+      <ul class="exp-projects">
+
+        <li class="exp-project">
+          <p class="exp-project-title">
+            <span data-lang-inline="en">Commercial Strategy & Brand Prospecting</span>
+            <span data-lang-inline="pt">Estratégia Comercial e Prospecção de Marcas</span>
+          </p>
+          <p class="exp-project-desc">
+            <span data-lang-inline="en">I manage the full commercial cycle for two influencers — in the football and pet niches — from brand prospecting and fit curation to contract negotiation and campaign management. Using Apollo for contact identification, I handle the interface between brand and creator, ensuring alignment on deliverables, tone, and timelines. Partners have included Petz, Cobasi, Disney+, Philips, Shopee, and Temu.</span>
+            <span data-lang-inline="pt">Gerencio o ciclo comercial completo de dois influenciadores — nos nichos de futebol e pet — desde a prospecção de marcas e curadoria de fit até a negociação de contratos e gestão de campanhas. Utilizando o Apollo para identificação de contatos, faço a interface entre marca e criador, garantindo alinhamento de entregas, tom e prazos. Parceiros incluem Petz, Cobasi, Disney+, Philips, Shopee e Temu.</span>
+          </p>
+          <span class="exp-result">
+            R$ 50k
+            <span data-lang-inline="en">in deals closed in 6 months</span>
+            <span data-lang-inline="pt">em publicidades fechadas em 6 meses</span>
+          </span>
+        </li>
+
+        <li class="exp-project">
+          <p class="exp-project-title">
+            <span data-lang-inline="en">Pricing & Media Kit Development</span>
+            <span data-lang-inline="pt">Precificação e Elaboração de Mídia Kit</span>
+          </p>
+          <p class="exp-project-desc">
+            <span data-lang-inline="en">I define pricing based on each creator's performance metrics and update their media kits monthly to reflect audience growth and engagement data. This data-driven positioning was key to repositioning both creators in the market — growing their per-post rate significantly.</span>
+            <span data-lang-inline="pt">Defino a precificação com base nas métricas de cada criador e atualizo os media kits mensalmente para refletir o crescimento de audiência e dados de engajamento. Esse posicionamento orientado a dados foi fundamental para reposicionar os dois criadores no mercado — elevando significativamente o valor por publicação.</span>
+          </p>
+          <span class="exp-result">
+            ↑ R$1k → R$3k+
+            <span data-lang-inline="en">per sponsored post (3× growth)</span>
+            <span data-lang-inline="pt">por publicação patrocinada (crescimento 3×)</span>
+          </span>
+          <p class="tools-line">
+            <strong data-lang-inline="en">Tools: </strong>
+            <strong data-lang-inline="pt">Ferramentas: </strong>
+            Apollo · Canva · Instagram Insights
+          </p>
+        </li>
+
+        <li class="exp-project">
+          <p class="exp-project-title">
+            <span data-lang-inline="en">Content Positioning & Creative Guidance</span>
+            <span data-lang-inline="pt">Posicionamento de Conteúdo e Orientação Criativa</span>
+          </p>
+          <p class="exp-project-desc">
+            <span data-lang-inline="en">Beyond the commercial side, I also advise creators on their content positioning — suggesting formats, recurring segments, and topics that attract brand partnerships. This strategic layer ensures that organic content and paid opportunities reinforce each other.</span>
+            <span data-lang-inline="pt">Além da parte comercial, oriento os criadores no posicionamento de conteúdo — sugerindo formatos, quadros recorrentes e temas que atraem parcerias com marcas. Essa camada estratégica garante que o conteúdo orgânico e as oportunidades pagas se reforcem mutuamente.</span>
+          </p>
+        </li>
+
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- JOURNALISM -->
+  <section id="journalism">
+    <p class="section-label">
+      <span data-lang-inline="en">Press</span>
+      <span data-lang-inline="pt">Imprensa</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang-inline="en">Journalism</span>
+      <span data-lang-inline="pt">Jornalismo</span>
+    </h2>
+    <p class="section-subtitle" style="margin-bottom:2rem;">
+      <span data-lang-inline="en">A selection of published work across G1 (Globo), CNN Brasil, Record TV, and Agência DC News. Topics: politics, health, science, economics, and social affairs.</span>
+      <span data-lang-inline="pt">Uma seleção de publicações no G1 (Globo), CNN Brasil, Record TV e Agência DC News. Temas: política, saúde, ciência, economia e comportamento.</span>
+    </p>
+
+    <div class="articles-grid">
+
+      <a class="article-card" href="https://www.cnnbrasil.com.br/internacional/guerra-em-israel-brasileiro-que-estava-em-festival-e-encontrado-morto/" target="_blank">
+        <p class="article-outlet">CNN Brasil · Internacional</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Brazil-Israel War: Brazilian at festival found dead, family says</span>
+          <span data-lang-inline="pt">Guerra em Israel: brasileiro em festival é encontrado morto, diz família</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">2023 · International Affairs</span>
+          <span data-lang-inline="pt">2023 · Internacional</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://www.cnnbrasil.com.br/internacional/guerra-de-israel-1o-aviao-da-fab-chega-a-tel-aviv-para-resgatar-brasileiros/" target="_blank">
+        <p class="article-outlet">CNN Brasil · Internacional</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Israel War: first Brazilian Air Force plane lands in Tel Aviv for rescue operation</span>
+          <span data-lang-inline="pt">Guerra de Israel: 1º avião da FAB chega a Tel Aviv para resgatar brasileiros</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">2023 · International Affairs</span>
+          <span data-lang-inline="pt">2023 · Internacional</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://www.cnnbrasil.com.br/nacional/mprj-denuncia-marcius-melhem-por-assedio-sexual-contra-tres-vitimas/" target="_blank">
+        <p class="article-outlet">CNN Brasil · Nacional</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Rio DA charges Marcius Melhem with sexual harassment against three victims</span>
+          <span data-lang-inline="pt">MPRJ denuncia Marcius Melhem por assédio sexual contra três vítimas</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">Nacional · Behavior</span>
+          <span data-lang-inline="pt">Nacional · Comportamento</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://www.cnnbrasil.com.br/nacional/perfil-de-agressor-em-ataques-a-escolas-e-aluno-de-ate-16-anos-que-age-sozinho-aponta-instituto/" target="_blank">
+        <p class="article-outlet">CNN Brasil · Nacional</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Profile of school attackers: students up to 16, acting alone, study finds</span>
+          <span data-lang-inline="pt">Perfil de agressor em ataques a escolas é aluno de até 16 anos que age sozinho</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">Nacional · Education &amp; Safety</span>
+          <span data-lang-inline="pt">Nacional · Educação e Segurança</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://g1.globo.com/sp/campinas-regiao/noticia/2021/09/06/pessoas-com-deficiencia-sao-048percent-das-admissoes-em-2021-na-regiao-metropolitana-de-campinas.ghtml" target="_blank">
+        <p class="article-outlet">G1 · Campinas</p>
+        <p class="article-title">
+          <span data-lang-inline="en">People with disabilities represent only 0.48% of new hires in Campinas metro area in 2021</span>
+          <span data-lang-inline="pt">Pessoas com deficiência são 0,48% das admissões em 2021 na região de Campinas</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">2021 · Labor &amp; Inclusion</span>
+          <span data-lang-inline="pt">2021 · Trabalho e Inclusão</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://g1.globo.com/sp/campinas-regiao/noticia/2021/03/14/aumentar-producao-de-vacinas-contra-covid-em-75percent-pode-reduzir-obitos-em-ate-57percent-no-brasil-diz-unicamp.ghtml" target="_blank">
+        <p class="article-outlet">G1 · Campinas</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Increasing COVID vaccine production by 75% could cut deaths by up to 57%, Unicamp says</span>
+          <span data-lang-inline="pt">Aumentar produção de vacinas contra Covid em 75% pode reduzir óbitos em até 57% no Brasil</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">2021 · Health &amp; Science</span>
+          <span data-lang-inline="pt">2021 · Saúde e Ciência</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://g1.globo.com/sp/campinas-regiao/noticia/2020/08/30/cientistas-da-unicamp-criam-novo-teste-da-covid-19-e-preveem-valor-ate-100-vezes-mais-barato-que-exames-tradicionais.ghtml" target="_blank">
+        <p class="article-outlet">G1 · Campinas</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Unicamp scientists develop new COVID-19 test projected to cost up to 100x less than traditional exams</span>
+          <span data-lang-inline="pt">Cientistas da Unicamp criam novo teste da Covid-19 até 100 vezes mais barato que os tradicionais</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">2020 · Science &amp; Innovation</span>
+          <span data-lang-inline="pt">2020 · Ciência e Inovação</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://g1.globo.com/sp/campinas-regiao/noticia/2020/05/23/campinas-registra-aumento-de-denuncias-de-violencia-sexual-contra-criancas-e-adolescentes-em-2020.ghtml" target="_blank">
+        <p class="article-outlet">G1 · Campinas</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Campinas sees spike in sexual violence reports against children in 2020</span>
+          <span data-lang-inline="pt">Campinas registra aumento de denúncias de violência sexual contra crianças em 2020</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">2020 · Social Affairs</span>
+          <span data-lang-inline="pt">2020 · Social</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://agenciadcnews.com.br/a-guardia-da-padaria-mais-antiga-do-brasil-conheca-a-historia-da-familia-maturana-que-administra-santa-tereza/" target="_blank">
+        <p class="article-outlet">Agência DC News</p>
+        <p class="article-title">
+          <span data-lang-inline="en">The guardians of Brazil's oldest bakery: the Maturana family behind Santa Tereza</span>
+          <span data-lang-inline="pt">A guarda da padaria mais antiga do Brasil: a família Maturana que administra Santa Tereza</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">Culture &amp; Business</span>
+          <span data-lang-inline="pt">Cultura e Negócios</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://agenciadcnews.com.br/brasil-e-segundo-maior-investidor-em-midia-de-varejo-do-mundo/" target="_blank">
+        <p class="article-outlet">Agência DC News</p>
+        <p class="article-title">
+          <span data-lang-inline="en">Brazil is the world's second-largest investor in retail media</span>
+          <span data-lang-inline="pt">Brasil é o segundo maior investidor em mídia de varejo do mundo</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">Economy &amp; Marketing</span>
+          <span data-lang-inline="pt">Economia e Marketing</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://agenciadcnews.com.br/com-praticas-esg-incorporadora-capital-concreto-lanca-hub-com-sete-empresas-e-visa-faturamento-de-r-1-bilhao-em-2025/" target="_blank">
+        <p class="article-outlet">Agência DC News</p>
+        <p class="article-title">
+          <span data-lang-inline="en">With ESG practices, Capital Concreto launches hub of seven companies targeting R$1B revenue in 2025</span>
+          <span data-lang-inline="pt">Com práticas ESG, Capital Concreto lança hub com sete empresas e visa R$1 bilhão em 2025</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">Business &amp; ESG</span>
+          <span data-lang-inline="pt">Negócios e ESG</span>
+        </p>
+      </a>
+
+      <a class="article-card" href="https://agenciadcnews.com.br/beg-destilaria-conquista-titulo-de-melhor-gin-do-mundo-com-o-rotulo-new-world-navy-e-projeta-faturamento-de-r-8-milhoes-para-2024/" target="_blank">
+        <p class="article-outlet">Agência DC News</p>
+        <p class="article-title">
+          <span data-lang-inline="en">BEG Distillery wins world's best gin title and projects R$8M revenue for 2024</span>
+          <span data-lang-inline="pt">BEG Destilaria conquista título de melhor gin do mundo e projeta R$8 milhões para 2024</span>
+        </p>
+        <p class="article-topic">
+          <span data-lang-inline="en">Business &amp; Culture</span>
+          <span data-lang-inline="pt">Negócios e Cultura</span>
+        </p>
+      </a>
+
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <div style="margin-top:2.5rem;">
+      <p class="section-label" style="margin-bottom:0.3rem;">
+        <span data-lang-inline="en">Video Reporting — Record TV</span>
+        <span data-lang-inline="pt">Reportagens em Vídeo — Record TV</span>
+      </p>
+      <p style="font-size:0.85rem;color:var(--muted);margin-bottom:1rem;">
+        <span data-lang-inline="en">A few selected reports. More available on request.</span>
+        <span data-lang-inline="pt">Algumas reportagens selecionadas. Mais disponíveis mediante solicitação.</span>
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+        <a class="article-card" href="https://www.youtube.com/watch?v=EiNPVbCGUAY" target="_blank" style="flex:1;min-width:200px;max-width:260px;">
+          <p class="article-outlet">Record TV · YouTube</p>
+          <p class="article-title" style="font-size:0.88rem;">
+            <span data-lang-inline="en">Research shows how handwriting supports brain development</span>
+            <span data-lang-inline="pt">Pesquisas mostram como escrever à mão ajuda no desenvolvimento do cérebro</span>
+          </p>
+          <p class="article-topic">
+            <span data-lang-inline="en">▶ Science &amp; Education</span>
+            <span data-lang-inline="pt">▶ Ciência e Educação</span>
+          </p>
+        </a>
+        <a class="article-card" href="https://www.youtube.com/watch?v=Hsxh6zsFNAM" target="_blank" style="flex:1;min-width:200px;max-width:260px;">
+          <p class="article-outlet">Record TV · YouTube</p>
+          <p class="article-title" style="font-size:0.88rem;">
+            <span data-lang-inline="en">Police investigate drug delivery scheme in São Paulo</span>
+            <span data-lang-inline="pt">Polícia investiga esquema de delivery de drogas em São Paulo</span>
+          </p>
+          <p class="article-topic">
+            <span data-lang-inline="en">▶ Public Safety</span>
+            <span data-lang-inline="pt">▶ Segurança Pública</span>
+          </p>
+        </a>
+        <a class="article-card" href="https://www.youtube.com/watch?v=4GyLQcrP_bc" target="_blank" style="flex:1;min-width:200px;max-width:260px;">
+          <p class="article-outlet">Record TV · YouTube</p>
+          <p class="article-title" style="font-size:0.88rem;">
+            <span data-lang-inline="en">Cyberbullying: one in six children are attacked and harassed on social media</span>
+            <span data-lang-inline="pt">Cyberbullying: uma em cada seis crianças são agredidas e assediadas nas redes sociais</span>
+          </p>
+          <p class="article-topic">
+            <span data-lang-inline="en">▶ Social Affairs</span>
+            <span data-lang-inline="pt">▶ Social</span>
+          </p>
+        </a>
+        <a class="article-card" href="https://www.youtube.com/watch?v=qqfcTQo4cUs" target="_blank" style="flex:1;min-width:200px;max-width:260px;">
+          <p class="article-outlet">Record TV · YouTube</p>
+          <p class="article-title" style="font-size:0.88rem;">
+            <span data-lang-inline="en">World Autism Day aims to raise awareness and promote social inclusion</span>
+            <span data-lang-inline="pt">Dia Mundial do Autismo tenta ampliar o conhecimento e promover inclusão social</span>
+          </p>
+          <p class="article-topic">
+            <span data-lang-inline="en">▶ Health &amp; Inclusion</span>
+            <span data-lang-inline="pt">▶ Saúde e Inclusão</span>
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">
+      <span data-lang-inline="en">Expertise</span>
+      <span data-lang-inline="pt">Expertises</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang-inline="en">Skills & Education</span>
+      <span data-lang-inline="pt">Habilidades & Formação</span>
+    </h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <p class="skill-group-title">
+          <span data-lang-inline="en">Education</span>
+          <span data-lang-inline="pt">Formação</span>
+        </p>
+        <p class="skill-list">
+          <span data-lang-inline="en">BA in Journalism<br>Post-Grad in High-Performance Corporate Communication</span>
+          <span data-lang-inline="pt">Bacharel em Jornalismo<br>Pós-Grad. em Comunicação Corporativa de Alta Performance</span>
+        </p>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">
+          <span data-lang-inline="en">Languages</span>
+          <span data-lang-inline="pt">Idiomas</span>
+        </p>
+        <p class="skill-list">
+          <span data-lang-inline="en">Portuguese (native)<br>English (fluent)</span>
+          <span data-lang-inline="pt">Português (nativo)<br>Inglês (fluente)</span>
+        </p>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">
+          <span data-lang-inline="en">Design & Video</span>
+          <span data-lang-inline="pt">Design e Vídeo</span>
+        </p>
+        <p class="skill-list">Canva<br>Adobe Illustrator<br>Adobe Premiere Pro<br>CapCut</p>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">
+          <span data-lang-inline="en">Communication & Publishing</span>
+          <span data-lang-inline="pt">Comunicação e Publicação</span>
+        </p>
+        <p class="skill-list">WordPress<br>Brevo (email marketing)<br>Microsoft Office</p>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">
+          <span data-lang-inline="en">Core Competencies</span>
+          <span data-lang-inline="pt">Competências</span>
+        </p>
+        <p class="skill-list">
+          <span data-lang-inline="en">Editorial curation<br>Content strategy<br>Internal communications<br>Data-driven storytelling</span>
+          <span data-lang-inline="pt">Curadoria editorial<br>Estratégia de conteúdo<br>Comunicação interna<br>Storytelling orientado a dados</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">
+      <span data-lang-inline="en">Get in touch</span>
+      <span data-lang-inline="pt">Fale comigo</span>
+    </p>
+    <h2 class="section-title">
+      <span data-lang-inline="en">Contact</span>
+      <span data-lang-inline="pt">Contato</span>
+    </h2>
+
+    <div class="contact-wrap">
+      <div class="contact-text">
+        <p>
+          <span data-lang-inline="en">Open to corporate communication, content strategy, and editorial projects — whether remote or based in Switzerland or Brazil.</span>
+          <span data-lang-inline="pt">Aberta a projetos de comunicação corporativa, estratégia de conteúdo e editorial — remotos ou baseados na Suíça ou no Brasil.</span>
+        </p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:nairapz@gmail.com">
+          <span>✉</span>
+          nairapz@gmail.com
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/nairazitei/" target="_blank">
+          <span>in</span>
+          linkedin.com/in/nairazitei
+        </a>
+        <a class="contact-link" href="#">
+          <span>📍</span>
+          Martigny, Switzerland
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span>Naira Zitei · 2026</span>
+  <span>
+    <span data-lang-inline="en">Corporate Communication · Journalism</span>
+    <span data-lang-inline="pt">Comunicação Corporativa · Jornalismo</span>
+  </span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = 'lang-' + lang;
+    document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+    document.getElementById('btn-pt').className = 'lang-btn' + (lang === 'pt' ? ' active' : '');
+    document.documentElement.lang = lang;
+  }
+</script>
+</body>
+</html>
