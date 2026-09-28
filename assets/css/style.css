@@ -373,3 +373,22 @@ p,li,blockquote,figcaption,dd{text-wrap:pretty}
 .video-play .disc,.video-play .hint{position:relative;z-index:1}
 .video-play.has-poster .hint{text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .video-play.has-poster .hint{display:none}
+
+/* separator lists: the dot sits before each item and is clipped at the start of every line */
+.dotlist{--dot-w:1.4em;display:flex;flex-wrap:wrap;list-style:none;padding:0;margin-left:calc(-1 * var(--dot-w));clip-path:inset(-0.5em 0 -0.5em var(--dot-w))}
+.dotlist > *{white-space:nowrap}
+.dotlist > *::before{content:"·";display:inline-block;width:var(--dot-w);text-align:center;color:var(--orange);font-weight:700;letter-spacing:0}
+.context.dotlist > *::before{color:inherit;font-weight:inherit}
+.chips.dotlist{--dot-w:1.6em}
+.brands.dotlist{--dot-w:1em}
+.outlets.dotlist{--dot-w:1.1em}
+.outlets.dotlist > *::before{color:inherit}
+/* "What changed" label aligned with the results grid */
+.results > .story-section{max-width:none;margin-inline:0}
+/* own reflections are not quotes */
+.pull--own::before{content:none}
+.pull.pull--own{margin:0}
+/* "up to 5x" */
+.big .upto{font-size:.32em;letter-spacing:.01em;margin-right:.3em;font-style:italic;vertical-align:baseline}
+.results .story-section h2{max-width:none;margin-inline:0}
+.story-section p.pull{font-size:clamp(1.35rem,2.4vw,1.8rem);line-height:1.35}
